@@ -26,14 +26,15 @@ describe "While Windows Bootstrapping" do
     bootstrap.config[:template_file] = TEMPLATE_FILE
 
     template = bootstrap.load_template
-    template_file_lines = template.split('\n')
+    template_file_lines = template.split("\n")
     it "should download Platform specific MSI" do
-      download_url=template_file_lines.find {|l| l.include?("url=")}
-      download_url.include?("%MACHINE_OS%") && download_url.include?("%MACHINE_ARCH%")
+      download_url = template_file_lines.find {|l| l.include?("url=")}
+      expect(download_url).to include("%MACHINE_OS%")
+      expect(download_url).to include("%MACHINE_ARCH%")
     end
     it "should download specific version of MSI if supplied" do
-      download_url_ext= template_file_lines.find {|l| l.include?("url +=")}
-      download_url_ext.include?("[:bootstrap_version]")
+      download_url_ext = template_file_lines.find {|l| l.include?("url +=")}
+      expect(download_url_ext).to include("[:bootstrap_version]")
     end
   end
 end
