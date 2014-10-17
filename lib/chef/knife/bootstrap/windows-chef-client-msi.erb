@@ -89,7 +89,7 @@ goto Version6.2
 :install
 @rem Install Chef using chef-client MSI installer
 
-<% url="https://www.opscode.com/chef/download?p=windows&pv=%MACHINE_OS%&m=x86_64" -%>
+<% url="http://www.opscode.com/chef/download?p=windows&pv=%MACHINE_OS%&m=x86_64" -%>
 <% url += "&v=#{@config[:bootstrap_version]}" if @config.key? :bootstrap_version -%>
 @set "REMOTE_SOURCE_MSI_URL=<%= url %>"
 @set "LOCAL_DESTINATION_MSI_PATH=<%= local_download_path %>"
